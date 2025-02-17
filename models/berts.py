@@ -1,10 +1,11 @@
 import os
 import torch
+from icecream import ic
 from collections.abc import Iterator
-from typing import Any, Literal, Optional, Union
+from typing import Any, Optional, Union
 from transformers import AutoModelForTokenClassification
 from torch.nn.parameter import Parameter
-from models.configs import lora_config
+from configs import lora_config
 from peft import get_peft_model, PeftModel, PeftConfig
 
 
@@ -32,9 +33,11 @@ class BertModel(torch.nn.Module):
         return self.model.get_nb_trainable_parameters()
 
     def state_dict(self):
+        ic()
         return self.model.state_dict()
 
     def load_state_dict(self, state_dict):
+        ic()
         missing_keys, unexpected_keys = self.model.load_state_dict(
             state_dict, strict=True
         )
@@ -119,7 +122,7 @@ class BertModel(torch.nn.Module):
         return model
 
     def save_trainable_parameters(self, model_path):
-        print("---- save_trainable_parameters -----")
+        ic()
         trainable_params = {
             name: param.data
             for name, param in self.model.named_parameters()
@@ -129,7 +132,7 @@ class BertModel(torch.nn.Module):
 
     @classmethod
     def from_trainable_parameters(cls, model_path, id2label, label2id):
-        print("---- from_trainable_parameters -----")
+        ic()
         checkpoint = torch.load(model_path)
         model = BertModel("bert-base-cased", id2label, label2id)
         model_dict = model.state_dict()
@@ -141,3 +144,13 @@ class BertModel(torch.nn.Module):
         self, prefix: str = "", recurse: bool = True, remove_duplicate: bool = True
     ) -> Iterator[tuple[str, Parameter]]:
         return self.model.named_parameters()
+
+    # @property
+    # def config(self):
+    #     return self.model.config
+
+    # @property
+    # def device(self) -> str:
+    #     if torch.cuda.is_available():
+    #         return "cuda"
+    #     return "cpu"

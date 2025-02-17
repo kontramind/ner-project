@@ -7,6 +7,7 @@ requires-python = ">=3.10"
 dependencies = [
     "datasets>=3.2.0",
     "evaluate>=0.4.3",
+    "icecream>=2.1.4",
     "peft>=0.14.0",
     "pyright>=1.1.393",
     "pytest>=8.3.4",
