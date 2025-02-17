@@ -1,0 +1,16 @@
+[project]
+name = "ner-project"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "datasets>=3.2.0",
+    "evaluate>=0.4.3",
+    "peft>=0.14.0",
+    "pyright>=1.1.393",
+    "pytest>=8.3.4",
+    "seqeval>=1.2.2",
+    "torch>=2.6.0",
+    "transformers>=4.48.3",
+]
