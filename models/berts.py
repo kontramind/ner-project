@@ -1,10 +1,10 @@
 import os
 import torch
 from collections.abc import Iterator
-from typing import Any, Literal, Optional, Union
+from typing import Any, Optional, Union
 from transformers import AutoModelForTokenClassification
 from torch.nn.parameter import Parameter
-from models.configs import lora_config
+from configs import lora_config
 from peft import get_peft_model, PeftModel, PeftConfig
 
 
