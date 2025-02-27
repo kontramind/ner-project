@@ -3,6 +3,7 @@ from icecream import ic
 from datasets import load_dataset
 from transformers import AutoTokenizer
 from berts import BertModel
+from codecarbon import OfflineEmissionsTracker
 
 
 def _extract_entities(predictions, offset_mapping, id2label):
@@ -118,4 +119,16 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    tracker = OfflineEmissionsTracker(
+        country_iso_code="NOR",
+        measure_power_secs=600,
+        allow_multiple_runs=True,
+        tracking_mode="process",
+        project_name="bert_ner_inference",
+    )
+    tracker.start()
     main()
+    emissions = tracker.stop()
+    ic(f"CO₂ Emissions: {emissions} kg CO₂")
+    tracker = None
+    emissions = None

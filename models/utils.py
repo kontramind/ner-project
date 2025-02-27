@@ -1,9 +1,6 @@
 import evaluate
 import numpy as np
-<<<<<<< HEAD
 from icecream import ic
-=======
->>>>>>> e64870b10d5d004f165773d3c38494c8f8f84bb8
 from transformers import AutoTokenizer
 
 

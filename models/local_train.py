@@ -8,6 +8,7 @@ from transformers import Trainer
 from functools import partial
 from configs import training_args
 from utils import tokenize_and_align_labels, compute_metrics
+from codecarbon import OfflineEmissionsTracker
 
 
 def main() -> None:
@@ -59,4 +60,16 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    tracker = OfflineEmissionsTracker(
+        country_iso_code="NOR",
+        measure_power_secs=600,
+        allow_multiple_runs=True,
+        tracking_mode="process",
+        project_name="bert_ner_training",
+    )
+    tracker.start()
     main()
+    emissions = tracker.stop()
+    ic(f"CO₂ Emissions: {emissions} kg CO₂")
+    tracker = None
+    emissions = None
