@@ -93,7 +93,7 @@ def main() -> None:
     id2label = {i: label for i, label in enumerate(label_names)}
     label2id = {v: k for k, v in id2label.items()}
 
-    text = "My name is Sasha and I work at DNV in Høvik. Høvik is in Norway. Norway is not member of European Union."
+    text = "My name is Sasha and I work at DNV in Høvik. Høvik is in Norway. Norway is not a member of European Union."
 
     file_path = "data/models/test-trainable-paramaters.pt"
     model = BertModel.from_trainable_parameters(file_path, id2label, label2id)

@@ -1,4 +1,3 @@
-import os
 from icecream import ic
 from datasets import load_dataset
 from transformers import AutoTokenizer
@@ -75,7 +74,7 @@ def main() -> None:
         end_section=True,
     )
 
-    for key in train_evaluation.keys():
+    for key in test_evaluation.keys():
         table.add_row(
             f"{key}",
             f"{train_evaluation[key]}",

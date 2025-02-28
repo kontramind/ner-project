@@ -58,11 +58,24 @@ def compute_metrics(eval_preds, label_names):
             predictions=true_predictions, references=true_labels
         )
         return {
-            "precision": all_metrics["overall_precision"],
-            "recall": all_metrics["overall_recall"],
-            "f1": all_metrics["overall_f1"],
-            "accuracy": all_metrics["overall_accuracy"],
+            "micro_precision": all_metrics["overall_precision"],
+            "micro_recall": all_metrics["overall_recall"],
+            "micro_f1": all_metrics["overall_f1"],
+            "micro_accuracy": all_metrics["overall_accuracy"],
+            "entity_PER_precision": all_metrics["PER"]["precision"],
+            "entity_PER_recall": all_metrics["PER"]["recall"],
+            "entity_PER_f1": all_metrics["PER"]["f1"],
+            "entity_ORG_precision": all_metrics["ORG"]["precision"],
+            "entity_ORG_recall": all_metrics["ORG"]["recall"],
+            "entity_ORG_f1": all_metrics["ORG"]["f1"],
+            "entity_LOC_precision": all_metrics["LOC"]["precision"],
+            "entity_LOC_recall": all_metrics["LOC"]["recall"],
+            "entity_LOC_f1": all_metrics["LOC"]["f1"],
+            "entity_MISC_precision": all_metrics["MISC"]["precision"],
+            "entity_MISC_recall": all_metrics["MISC"]["recall"],
+            "entity_MISC_f1": all_metrics["MISC"]["f1"],
         }
+
     except Exception as e:
         print(f"Error computing metrics: {e}")
         return {}
